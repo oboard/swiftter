@@ -75,7 +75,6 @@ extension WidgetExtension on Widget {
       textStyle = (this as DefaultTextStyle).style;
       ref = (this as DefaultTextStyle).child;
     }
-
     return DefaultTextStyle(
         style: textStyle.copyWith(color: color), child: ref);
   }
