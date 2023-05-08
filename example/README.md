@@ -1,16 +1,20 @@
-# swiftter_example
+# Swiftter
+Swiftter是一个Flutter Plugin，让你使用Swift UI的方式描述UI
 
-Demonstrates how to use the swiftter plugin.
+```swift
+VStack {
+    Text("Swiffter")
+    .color(.black)
+    .shadow(color: .black, radius: 24, x: 0, y: 0),
+}.padding(.all, 8).blur(12),
+```
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```dart
+VStack([
+    const Text("Swiffter")
+        .color(Colors.black)
+        .fontSize(24)
+        .shadow(color: Colors.black, radius: 24, x: 0, y: 0)
+        .expanded(),
+]).padding(all: 8).blur(12),
+```

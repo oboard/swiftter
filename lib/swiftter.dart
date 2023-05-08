@@ -11,12 +11,28 @@ import 'package:flutter/widgets.dart';
 typedef FunctionWithArguments = dynamic Function(
     List<dynamic> positionalArguments, Map<Symbol, dynamic> namedArguments);
 
-Column VStack([List<Widget> list = const []]) {
-  return Column(children: list);
+Column VStack(
+  List<Widget> children, {
+  MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+  MainAxisSize mainAxisSize = MainAxisSize.max,
+  CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+  TextDirection? textDirection,
+  VerticalDirection verticalDirection = VerticalDirection.down,
+  TextBaseline? textBaseline,
+}) {
+  return Column(children: children);
 }
 
-Row HStack([List<Widget> list = const []]) {
-  return Row(children: list);
+Row HStack(
+  List<Widget> children, {
+  MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+  MainAxisSize mainAxisSize = MainAxisSize.max,
+  CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+  TextDirection? textDirection,
+  VerticalDirection verticalDirection = VerticalDirection.down,
+  TextBaseline? textBaseline,
+}) {
+  return Row(children: children);
 }
 
 Stack ZStack([List<Widget> list = const []]) {
@@ -29,14 +45,16 @@ extension WidgetExtension on Widget {
       double? left,
       double? right,
       double? top,
-      double? bottom}) {
+      double? bottom,
+      double? vertical,
+      double? horizontal}) {
     if (left != null || right != null || top != null || bottom != null) {
       return Padding(
         padding: EdgeInsets.only(
-          left: left ?? 0,
-          right: right ?? 0,
-          top: top ?? 0,
-          bottom: bottom ?? 0,
+          left: horizontal ?? (left ?? 0),
+          right: horizontal ?? (right ?? 0),
+          top: vertical ?? (top ?? 0),
+          bottom: vertical ?? (bottom ?? 0),
         ),
         child: this,
       );
@@ -94,6 +112,19 @@ extension WidgetExtension on Widget {
 
     return DefaultTextStyle(
         style: textStyle.copyWith(fontSize: size), child: ref);
+  }
+
+  DefaultTextStyle bold() {
+    TextStyle textStyle = const TextStyle();
+    Widget ref = this;
+
+    if (this is DefaultTextStyle) {
+      textStyle = (this as DefaultTextStyle).style;
+      ref = (this as DefaultTextStyle).child;
+    }
+
+    return DefaultTextStyle(
+        style: textStyle.copyWith(fontWeight: FontWeight.bold), child: ref);
   }
 
   Widget shadow(

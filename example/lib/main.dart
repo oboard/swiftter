@@ -31,11 +31,12 @@ class _TestHomePageState extends State<_TestHomePage> {
       appBar: AppBar(title: const Text('Swiftter Demo')),
       body: VStack([
         const Text("Swiffter")
-            .color(Colors.black)
+            .color(Colors.white)
             .fontSize(24)
+            .bold()
             .shadow(color: Colors.black, radius: 24, x: 0, y: 0)
             .expanded(),
-      ]).padding().blur(12),
+      ]).padding(all: 80),
     );
   }
 }
